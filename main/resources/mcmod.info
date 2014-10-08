@@ -1,0 +1,16 @@
+[
+{
+  "modid": "extvil",
+  "name": "Extended Villages",
+  "description": "Extend your villages with new houses, buildings and proffesions",
+  "version": "1.7.10-1.0",
+  "mcversion": "1.7.10",
+  "url": "www.larsmods.com",
+  "updateUrl": "",
+  "authorList": ["TheLarsinator"],
+  "credits": ""
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
