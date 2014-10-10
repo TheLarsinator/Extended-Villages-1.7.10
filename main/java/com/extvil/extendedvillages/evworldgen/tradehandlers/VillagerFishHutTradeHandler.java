@@ -1,4 +1,4 @@
-package com.extvil.extendedvillages.evworldgen;
+package com.extvil.extendedvillages.evworldgen.tradehandlers;
 
 import java.util.Random;
 
@@ -13,7 +13,7 @@ import net.minecraft.village.MerchantRecipeList;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 
-public class VillagerWindMillTradeHandler implements IVillageTradeHandler 
+public class VillagerFishHutTradeHandler implements IVillageTradeHandler 
 {
 
     private float baseChance;
@@ -23,14 +23,13 @@ public class VillagerWindMillTradeHandler implements IVillageTradeHandler
 	{
         baseChance = ObfuscationReflectionHelper.<Float, EntityVillager>getPrivateValue(EntityVillager.class, villager, "field_82191_bN");
         
-        addTrade(recipeList, rand, 0.7F, new Offer(Items.wheat, 16, 24), new Offer(Items.emerald, 2, 3));
-        addTrade(recipeList, rand, 0.7F, new Offer(Items.emerald, 3, 4), new Offer(Items.wheat, 10, 16));
+        addTrade(recipeList, rand, 0.7F, new Offer(Items.dye, 16, 24), new Offer(Items.emerald, 2, 3));
+        addTrade(recipeList, rand, 0.7F, new Offer(Items.emerald, 3, 4), new Offer(Items.dye, 10, 16));
         
-        addTrade(recipeList, rand, 0.7F, new Offer(Items.wheat_seeds, 16), new Offer(Items.emerald, 3));
-        addTrade(recipeList, rand, 0.7F, new Offer(Items.emerald, 4), new Offer(Items.wheat_seeds, 10));
+        addTrade(recipeList, rand, 0.7F, new Offer(Items.fishing_rod, 1), new Offer(Items.emerald, 8));
         
-        addTrade(recipeList, rand, 0.7F, new Offer(Items.bread, 3), new Offer(Items.emerald, 3));
-        addTrade(recipeList, rand, 0.7F, new Offer(Items.emerald, 5), new Offer(Items.bread, 2));
+        addTrade(recipeList, rand, 0.7F, new Offer(Items.fish, 3), new Offer(Items.emerald, 1));
+        addTrade(recipeList, rand, 0.7F, new Offer(Items.emerald, 5), new Offer(Items.fish, 8));
 	}
 
 	

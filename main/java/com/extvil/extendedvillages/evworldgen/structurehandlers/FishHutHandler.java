@@ -1,7 +1,9 @@
-package com.extvil.extendedvillages.evworldgen;
+package com.extvil.extendedvillages.evworldgen.structurehandlers;
 
 import java.util.List;
 import java.util.Random;
+
+import com.extvil.extendedvillages.evworldgen.components.ComponentFishHut;
 
 import net.minecraft.world.gen.structure.StructureVillagePieces.PieceWeight;
 import net.minecraft.world.gen.structure.StructureVillagePieces.Start;
