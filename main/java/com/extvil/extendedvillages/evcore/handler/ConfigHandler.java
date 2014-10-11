@@ -13,6 +13,7 @@ public class ConfigHandler
 	public static int MillerID = 10;
 	public static int FisherID = 11;
 	public static int BakerID = 12;
+	public static int MinerID = 13;
 	
 	public static void LoadFile(File configFile)
 	{
@@ -29,6 +30,7 @@ public class ConfigHandler
 		MillerID = config.getInt("Miller Villager ID", "villagers", MillerID, 0, 300, "Villager ID for Miller");
 		FisherID = config.getInt("Fisher Villager ID", "villagers", FisherID, 0, 300, "Villager ID for Fisher");
 		BakerID = config.getInt("Baker Villager ID", "villagers", BakerID, 0, 300, "Villager ID for Baker");
+		MinerID = config.getInt("Miner Villager ID", "villagers", MinerID, 0, 300, "Villager ID for Miner");
 		
 		if(config.hasChanged())	
 		config.save();

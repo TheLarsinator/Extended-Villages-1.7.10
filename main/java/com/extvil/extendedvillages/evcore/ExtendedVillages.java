@@ -1,23 +1,28 @@
 package com.extvil.extendedvillages.evcore;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 
 import com.extvil.extendedvillages.evcore.handler.ConfigHandler;
 import com.extvil.extendedvillages.evworldgen.blocks.BlockFakeSandStone;
 import com.extvil.extendedvillages.evworldgen.components.ComponentBakery;
 import com.extvil.extendedvillages.evworldgen.components.ComponentFishHut;
+import com.extvil.extendedvillages.evworldgen.components.ComponentMiner;
 import com.extvil.extendedvillages.evworldgen.components.ComponentWindmill;
 import com.extvil.extendedvillages.evworldgen.structurehandlers.BakeryHandler;
 import com.extvil.extendedvillages.evworldgen.structurehandlers.FishHutHandler;
+import com.extvil.extendedvillages.evworldgen.structurehandlers.MinerHandler;
 import com.extvil.extendedvillages.evworldgen.structurehandlers.WindMillHandler;
 import com.extvil.extendedvillages.evworldgen.tradehandlers.VillagerBakeryTradeHandler;
 import com.extvil.extendedvillages.evworldgen.tradehandlers.VillagerFishHutTradeHandler;
+import com.extvil.extendedvillages.evworldgen.tradehandlers.VillagerMinerTradeHandler;
 import com.extvil.extendedvillages.evworldgen.tradehandlers.VillagerWindMillTradeHandler;
 
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -26,7 +31,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 
 
 
-@Mod (modid = "extvil", name = "Extended_Villages", version = "1.7.10-1.2", guiFactory = "com.extvil.extendedvillages.evcore.ExtendedVillagesGUIFactory")
+@Mod (modid = "extvil", name = "Extended_Villages", version = "1.7.10-1.3", guiFactory = "com.extvil.extendedvillages.evcore.ExtendedVillagesGUIFactory")
 
 
 public class ExtendedVillages 
@@ -41,6 +46,7 @@ public class ExtendedVillages
     public static final ResourceLocation MILLER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Miller.png");
     public static final ResourceLocation FISHER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Fisher.png");
     public static final ResourceLocation BAKER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Baker.png");
+    public static final ResourceLocation MINER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Miner.png");
 	
 	
 	public static Block SmoothSand;
@@ -63,7 +69,6 @@ public class ExtendedVillages
 	@Mod.EventHandler
 	public void Init(FMLInitializationEvent event)
 	{
-		
 		
 		int millvillager = ConfigHandler.MillerID;
         VillagerRegistry.instance().registerVillagerId(millvillager);
@@ -88,5 +93,13 @@ public class ExtendedVillages
 		VillagerRegistry.instance().registerVillagerSkin(backeryvillager, this.BAKER_TEXTURE);
 		
 		MapGenStructureIO.func_143031_a(ComponentBakery.class, "extvil:Bakery");
+		
+		int minervillager = ConfigHandler.MinerID;
+        VillagerRegistry.instance().registerVillagerId(minervillager);
+        VillagerRegistry.instance().registerVillageTradeHandler(minervillager, new VillagerMinerTradeHandler());
+		VillagerRegistry.instance().registerVillageCreationHandler(new MinerHandler());
+		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.MINER_TEXTURE);
+		
+		MapGenStructureIO.func_143031_a(ComponentMiner.class, "extvil:Minery");
 	}
 }

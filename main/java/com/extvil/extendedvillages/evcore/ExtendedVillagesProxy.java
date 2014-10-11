@@ -1,10 +1,11 @@
 package com.extvil.extendedvillages.evcore;
 
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.passive.EntityVillager;
 
 public class ExtendedVillagesProxy 
 {
-    public void registerRenderInformation()
+    public void registerRenderInformation(EntityVillager p_110775_1_)
     {
 
     }
