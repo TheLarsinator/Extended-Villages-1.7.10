@@ -34,7 +34,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 
 
 
-@Mod (modid = "extvil", name = "Extended_Villages", version = "1.7.10-2.3", guiFactory = "com.extvil.extendedvillages.evcore.ExtendedVillagesGUIFactory")
+@Mod (modid = "extvil", name = "Extended_Villages", version = "1.7.10-2.3b", guiFactory = "com.extvil.extendedvillages.evcore.ExtendedVillagesGUIFactory")
 
 
 public class ExtendedVillages 

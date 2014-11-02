@@ -16,6 +16,7 @@ public class ConfigHandler
 	public static int MinerID = 13;
 	public static int ScientistID = 18;
 	public static int TannerID = 25;
+	public static int PalID = 26;
 
 	
 	public static boolean CustomRender = true;
@@ -38,6 +39,7 @@ public class ConfigHandler
 		MinerID = config.getInt("Miner Villager ID", "villagers", MinerID, 0, 300, "Villager ID for Miner");
 		ScientistID = config.getInt("Scientist Villager ID", "villagers", ScientistID, 0, 300, "Villager ID for Scientist");
 		TannerID = config.getInt("Tanner Villager ID", "villagers", TannerID, 0, 300, "Villager ID for Tanner");
+		PalID = config.getInt("Pal Villager ID", "villagers", PalID, 0, 300, "Villager ID for Pal");
 		CustomRender = config.getBoolean("Custom Render", "customrender", CustomRender, "Enable/Disable custom Render. Turn this off if you want to use a texture-pack");
 		
 		if(config.hasChanged())	
