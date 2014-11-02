@@ -1,24 +1,27 @@
 package com.extvil.extendedvillages.evcore;
 
+import java.util.Calendar;
+
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraftforge.common.ChestGenHooks;
 
 import com.extvil.extendedvillages.evcore.handler.ConfigHandler;
 import com.extvil.extendedvillages.evworldgen.blocks.BlockFakeSandStone;
 import com.extvil.extendedvillages.evworldgen.components.ComponentBakery;
 import com.extvil.extendedvillages.evworldgen.components.ComponentFishHut;
+import com.extvil.extendedvillages.evworldgen.components.ComponentLab;
 import com.extvil.extendedvillages.evworldgen.components.ComponentMiner;
 import com.extvil.extendedvillages.evworldgen.components.ComponentWindmill;
 import com.extvil.extendedvillages.evworldgen.structurehandlers.BakeryHandler;
 import com.extvil.extendedvillages.evworldgen.structurehandlers.FishHutHandler;
+import com.extvil.extendedvillages.evworldgen.structurehandlers.LabHandler;
 import com.extvil.extendedvillages.evworldgen.structurehandlers.MinerHandler;
 import com.extvil.extendedvillages.evworldgen.structurehandlers.WindMillHandler;
 import com.extvil.extendedvillages.evworldgen.tradehandlers.VillagerBakeryTradeHandler;
 import com.extvil.extendedvillages.evworldgen.tradehandlers.VillagerFishHutTradeHandler;
+import com.extvil.extendedvillages.evworldgen.tradehandlers.VillagerLabTradeHandler;
 import com.extvil.extendedvillages.evworldgen.tradehandlers.VillagerMinerTradeHandler;
 import com.extvil.extendedvillages.evworldgen.tradehandlers.VillagerWindMillTradeHandler;
 
@@ -31,7 +34,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 
 
 
-@Mod (modid = "extvil", name = "Extended_Villages", version = "1.7.10-1.3", guiFactory = "com.extvil.extendedvillages.evcore.ExtendedVillagesGUIFactory")
+@Mod (modid = "extvil", name = "Extended_Villages", version = "1.7.10-2.3", guiFactory = "com.extvil.extendedvillages.evcore.ExtendedVillagesGUIFactory")
 
 
 public class ExtendedVillages 
@@ -43,11 +46,18 @@ public class ExtendedVillages
 	@Mod.Instance("extvil")
 	public static ExtendedVillages instance;
 
+	public static boolean isHalloween;
     public static final ResourceLocation MILLER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Miller.png");
     public static final ResourceLocation FISHER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Fisher.png");
     public static final ResourceLocation BAKER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Baker.png");
     public static final ResourceLocation MINER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Miner.png");
-	
+    public static final ResourceLocation SCIENTIST_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Scientist.png");
+
+    public static final ResourceLocation HMILLER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/HMiller.png");
+    public static final ResourceLocation HFISHER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/HFisher.png");
+    public static final ResourceLocation HBAKER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/HBaker.png");
+    public static final ResourceLocation HMINER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/HMiner.png");
+    public static final ResourceLocation HSCIENTIST_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/HScientist.png");
 	
 	public static Block SmoothSand;
 	public static Block DecoSand;
@@ -74,7 +84,6 @@ public class ExtendedVillages
         VillagerRegistry.instance().registerVillagerId(millvillager);
         VillagerRegistry.instance().registerVillageTradeHandler(millvillager, new VillagerWindMillTradeHandler());
 		VillagerRegistry.instance().registerVillageCreationHandler(new WindMillHandler());
-		VillagerRegistry.instance().registerVillagerSkin(millvillager, this.MILLER_TEXTURE);
 		
 		MapGenStructureIO.func_143031_a(ComponentWindmill.class, "extvil:Windmill");
 		
@@ -82,7 +91,6 @@ public class ExtendedVillages
         VillagerRegistry.instance().registerVillagerId(fishvillager);
         VillagerRegistry.instance().registerVillageTradeHandler(fishvillager, new VillagerFishHutTradeHandler());
 		VillagerRegistry.instance().registerVillageCreationHandler(new FishHutHandler());
-		VillagerRegistry.instance().registerVillagerSkin(fishvillager, this.FISHER_TEXTURE);
 		
 		MapGenStructureIO.func_143031_a(ComponentFishHut.class, "extvil:FishHut");
 		
@@ -90,7 +98,6 @@ public class ExtendedVillages
         VillagerRegistry.instance().registerVillagerId(backeryvillager);
         VillagerRegistry.instance().registerVillageTradeHandler(backeryvillager, new VillagerBakeryTradeHandler());
 		VillagerRegistry.instance().registerVillageCreationHandler(new BakeryHandler());
-		VillagerRegistry.instance().registerVillagerSkin(backeryvillager, this.BAKER_TEXTURE);
 		
 		MapGenStructureIO.func_143031_a(ComponentBakery.class, "extvil:Bakery");
 		
@@ -98,8 +105,47 @@ public class ExtendedVillages
         VillagerRegistry.instance().registerVillagerId(minervillager);
         VillagerRegistry.instance().registerVillageTradeHandler(minervillager, new VillagerMinerTradeHandler());
 		VillagerRegistry.instance().registerVillageCreationHandler(new MinerHandler());
-		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.MINER_TEXTURE);
 		
 		MapGenStructureIO.func_143031_a(ComponentMiner.class, "extvil:Minery");
+		
+		int scientistvillager = ConfigHandler.ScientistID;
+        VillagerRegistry.instance().registerVillagerId(scientistvillager);
+        VillagerRegistry.instance().registerVillageTradeHandler(scientistvillager, new VillagerLabTradeHandler());
+		VillagerRegistry.instance().registerVillageCreationHandler(new LabHandler());
+		
+		MapGenStructureIO.func_143031_a(ComponentLab.class, "extvil:Lab");
+		
+		//Textures with Halloween Check
+        Calendar calendar = Calendar.getInstance();
+
+        if((calendar.get(2) + 1 == 10 && calendar.get(5) >= 28 && calendar.get(5) <= 31) || (calendar.get(2) + 1 == 11 && calendar.get(5) >= 1 && calendar.get(5) <= 2))
+        {  
+        	isHalloween = true;
+    	}
+        else
+        {
+        	isHalloween = false;
+        }
+        if(isHalloween)
+        {
+        	VillagerRegistry.instance().registerVillagerSkin(millvillager, this.HMILLER_TEXTURE);
+        	VillagerRegistry.instance().registerVillagerSkin(fishvillager, this.HFISHER_TEXTURE);
+        	VillagerRegistry.instance().registerVillagerSkin(backeryvillager, this.HBAKER_TEXTURE);
+        	VillagerRegistry.instance().registerVillagerSkin(minervillager, this.HMINER_TEXTURE);
+        	VillagerRegistry.instance().registerVillagerSkin(minervillager, this.HSCIENTIST_TEXTURE);
+        }
+        else
+        {
+    		VillagerRegistry.instance().registerVillagerSkin(millvillager, this.MILLER_TEXTURE);
+    		VillagerRegistry.instance().registerVillagerSkin(fishvillager, this.FISHER_TEXTURE);
+    		VillagerRegistry.instance().registerVillagerSkin(backeryvillager, this.BAKER_TEXTURE);
+    		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.MINER_TEXTURE);
+    		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.SCIENTIST_TEXTURE);
+        }
+        
+        
+		
+		proxy.registerRenderInformation();
+
 	}
 }

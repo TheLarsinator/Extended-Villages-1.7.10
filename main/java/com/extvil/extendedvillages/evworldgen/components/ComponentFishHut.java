@@ -1,10 +1,13 @@
 package com.extvil.extendedvillages.evworldgen.components;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
 import com.extvil.extendedvillages.evcore.ExtendedVillages;
+import com.extvil.extendedvillages.evcore.handler.ConfigHandler;
 
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -13,11 +16,15 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
 import net.minecraft.world.gen.structure.StructureVillagePieces.Start;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.BiomeEvent;
 
 public class ComponentFishHut extends StructureVillagePieces.Village{
 	
 	private int averageGroundLevel = -1;
-	
+	private boolean isHalloween;
+    private StructureVillagePieces.Start startPiece;
+
 	public ComponentFishHut()
 	{
 		
@@ -60,7 +67,16 @@ public class ComponentFishHut extends StructureVillagePieces.Village{
         Block Floor;
         
     	BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(x, z);
-    	
+        Calendar calendar = Calendar.getInstance();
+
+        if((calendar.get(2) + 1 == 10 && calendar.get(5) >= 28 && calendar.get(5) <= 31) || (calendar.get(2) + 1 == 11 && calendar.get(5) >= 1 && calendar.get(5) <= 2))
+        {  
+        	isHalloween = true;
+    	}
+        else
+        {
+        	isHalloween = false;
+        }
     	if(biome == BiomeGenBase.desert)
     	{
     		walls = Blocks.sandstone;
@@ -69,6 +85,15 @@ public class ComponentFishHut extends StructureVillagePieces.Village{
     		Ground = Blocks.sand;
     		Path = Blocks.sandstone;
     		Floor = Blocks.planks;
+    	}
+    	else if(isHalloween)
+    	{
+    		walls = Blocks.stained_hardened_clay;
+    		roof = Blocks.netherrack;
+    		Deco = Blocks.hardened_clay;
+    		Ground = Blocks.soul_sand;
+    		Floor = Blocks.nether_brick;
+    		Path = Blocks.gravel;
     	}
     	else
     	{
@@ -177,9 +202,23 @@ public class ComponentFishHut extends StructureVillagePieces.Village{
         placeDoorAtCurrentPosition(world, boundingBox, random, 7, 4, 3, 0);        
         return true;
 	}
-	
+    protected int func_151557_c(Block p_151557_1_, int p_151557_2_)
+    {
+        BiomeEvent.GetVillageBlockMeta event = new BiomeEvent.GetVillageBlockMeta(startPiece == null ? null : startPiece.biome, p_151557_1_, p_151557_2_);
+        MinecraftForge.TERRAIN_GEN_BUS.post(event);
+        if (event.getResult() == Result.DENY) return event.replacement;
+        if (this.isHalloween)
+        {
+            if (p_151557_1_ == Blocks.stained_hardened_clay)
+            {
+                return 1;
+            }
+        }
+
+        return p_151557_2_;
+    }
     @Override
     protected int getVillagerType(int par1) {
-        return 11;
+        return ConfigHandler.FisherID;
     }
 }

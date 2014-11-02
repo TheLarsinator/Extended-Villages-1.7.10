@@ -3,7 +3,6 @@ package com.extvil.extendedvillages.evworldgen.tradehandlers;
 import java.util.Calendar;
 import java.util.Random;
 
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Blocks;
@@ -16,7 +15,7 @@ import net.minecraft.village.MerchantRecipeList;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 
-public class VillagerMinerTradeHandler implements IVillageTradeHandler 
+public class VillagerLabTradeHandler implements IVillageTradeHandler 
 {
 
     private float baseChance;
@@ -39,12 +38,12 @@ public class VillagerMinerTradeHandler implements IVillageTradeHandler
         baseChance = ObfuscationReflectionHelper.<Float, EntityVillager>getPrivateValue(EntityVillager.class, villager, "field_82191_bN");
         if(!isHalloween)
         {
-        addTrade(recipeList, rand, 0.7F, new Offer(Item.getItemFromBlock(Blocks.iron_ore), 1, 3), new Offer(Items.emerald, 1, 2));
-        addTrade(recipeList, rand, 0.7F, new Offer(Items.iron_pickaxe, 1), new Offer(Items.emerald, 3, 4));
+        addTrade(recipeList, rand, 0.7F, new Offer(Items.blaze_powder, 3), new Offer(Items.emerald, 3, 4));
         
-        addTrade(recipeList, rand, 0.7F, new Offer(Item.getItemFromBlock(Blocks.gold_ore), 1), new Offer(Items.emerald, 3));
+        addTrade(recipeList, rand, 0.7F, new Offer(Item.getItemFromBlock(Blocks.brewing_stand), 1), new Offer(Items.emerald, 4));
         
-        addTrade(recipeList, rand, 0.7F, new Offer(Items.diamond, 1), new Offer(Items.emerald, 6, 8));
+        addTrade(recipeList, rand, 0.7F, new Offer(Items.gold_nugget, 3), new Offer(Items.emerald, 1));
+        addTrade(recipeList, rand, 0.7F, new Offer(Items.enchanted_book, 1), new Offer(Items.emerald, 5));
         }
         else
         {

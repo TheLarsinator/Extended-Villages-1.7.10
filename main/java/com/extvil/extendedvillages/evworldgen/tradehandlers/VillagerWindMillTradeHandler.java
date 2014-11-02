@@ -1,9 +1,12 @@
 package com.extvil.extendedvillages.evworldgen.tradehandlers;
 
+import java.util.Calendar;
 import java.util.Random;
+
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,12 +20,25 @@ public class VillagerWindMillTradeHandler implements IVillageTradeHandler
 {
 
     private float baseChance;
+	private boolean isHalloween;
 
 	@Override
 	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random rand) 
 	{
+        Calendar calendar = Calendar.getInstance();
+
+        if((calendar.get(2) + 1 == 10 && calendar.get(5) >= 28 && calendar.get(5) <= 31) || (calendar.get(2) + 1 == 11 && calendar.get(5) >= 1 && calendar.get(5) <= 2))
+        {  
+        	isHalloween = true;
+    	}
+        else
+        {
+        	isHalloween = false;
+        }
+		
         baseChance = ObfuscationReflectionHelper.<Float, EntityVillager>getPrivateValue(EntityVillager.class, villager, "field_82191_bN");
-        
+        if(!isHalloween)
+        {
         addTrade(recipeList, rand, 0.7F, new Offer(Items.wheat, 16, 24), new Offer(Items.emerald, 2, 3));
         addTrade(recipeList, rand, 0.7F, new Offer(Items.emerald, 3, 4), new Offer(Items.wheat, 10, 16));
         
@@ -31,6 +47,18 @@ public class VillagerWindMillTradeHandler implements IVillageTradeHandler
         
         addTrade(recipeList, rand, 0.7F, new Offer(Items.bread, 3), new Offer(Items.emerald, 3));
         addTrade(recipeList, rand, 0.7F, new Offer(Items.emerald, 5), new Offer(Items.bread, 2));
+        }
+        else
+        {
+        	addTrade(recipeList, rand, 0.7F, new Offer(Items.string, 6), new Offer(Items.emerald, 1));
+        	addTrade(recipeList, rand, 0.7F, new Offer(Items.apple, 3), new Offer(Items.emerald, 1));
+        	
+        	addTrade(recipeList, rand, 0.7F, new Offer(Item.getItemFromBlock(Blocks.netherrack), 64), new Offer(Item.getItemFromBlock(Blocks.cobblestone), 64));
+        	addTrade(recipeList, rand, 0.7F, new Offer(Item.getItemFromBlock(Blocks.cobblestone), 64), new Offer(Item.getItemFromBlock(Blocks.netherrack), 64));
+        	
+        	addTrade(recipeList, rand, 0.7F, new Offer(Item.getItemFromBlock(Blocks.pumpkin), 2), new Offer(Items.emerald, 1));
+        	addTrade(recipeList, rand, 0.7F, new Offer(Item.getItemFromBlock(Blocks.lit_pumpkin), 2), new Offer(Items.emerald, 2));
+        }
 	}
 
 	

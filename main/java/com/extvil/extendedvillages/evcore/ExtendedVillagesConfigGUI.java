@@ -25,6 +25,7 @@ public class ExtendedVillagesConfigGUI extends GuiConfig
     {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         list.add(new DummyCategoryElement("Villager Type IDs", "Villagers", ExtendedVillagesConfig.class));
+        list.add(new DummyCategoryElement("Custom Villager Render", "Core", ExtendedVillagesRenderConfig.class));
         return list;
     }
     
@@ -42,6 +43,23 @@ public class ExtendedVillagesConfigGUI extends GuiConfig
             // GuiConfig object's entryList will also be refreshed to reflect the changes.
             return new GuiConfig(this.owningScreen, 
                     new ConfigElement(ConfigHandler.config.getCategory("villagers")).getChildElements(), "extvil", false, false, "Extended Villages Config", GuiConfig.getAbridgedConfigPath(ConfigHandler.config.toString()));
+        }
+    }
+    
+    public static class ExtendedVillagesRenderConfig extends CategoryEntry
+    {
+        public ExtendedVillagesRenderConfig(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop)
+        {
+            super(owningScreen, owningEntryList, prop);
+        }
+        
+        @Override
+        protected GuiScreen buildChildScreen()
+        {
+            // This GuiConfig object specifies the configID of the object and as such will force-save when it is closed. The parent
+            // GuiConfig object's entryList will also be refreshed to reflect the changes.
+            return new GuiConfig(this.owningScreen, 
+                    new ConfigElement(ConfigHandler.config.getCategory("customrender")).getChildElements(), "extvil", false, false, "Extended Villages Custom Render", GuiConfig.getAbridgedConfigPath(ConfigHandler.config.toString()));
         }
     }
 }

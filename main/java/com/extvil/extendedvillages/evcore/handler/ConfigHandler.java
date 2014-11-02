@@ -14,6 +14,11 @@ public class ConfigHandler
 	public static int FisherID = 11;
 	public static int BakerID = 12;
 	public static int MinerID = 13;
+	public static int ScientistID = 18;
+	public static int TannerID = 25;
+
+	
+	public static boolean CustomRender = true;
 	
 	public static void LoadFile(File configFile)
 	{
@@ -31,6 +36,9 @@ public class ConfigHandler
 		FisherID = config.getInt("Fisher Villager ID", "villagers", FisherID, 0, 300, "Villager ID for Fisher");
 		BakerID = config.getInt("Baker Villager ID", "villagers", BakerID, 0, 300, "Villager ID for Baker");
 		MinerID = config.getInt("Miner Villager ID", "villagers", MinerID, 0, 300, "Villager ID for Miner");
+		ScientistID = config.getInt("Scientist Villager ID", "villagers", ScientistID, 0, 300, "Villager ID for Scientist");
+		TannerID = config.getInt("Tanner Villager ID", "villagers", TannerID, 0, 300, "Villager ID for Tanner");
+		CustomRender = config.getBoolean("Custom Render", "customrender", CustomRender, "Enable/Disable custom Render. Turn this off if you want to use a texture-pack");
 		
 		if(config.hasChanged())	
 		config.save();
