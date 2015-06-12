@@ -115,36 +115,6 @@ public class ExtendedVillages
 		
 		MapGenStructureIO.func_143031_a(ComponentLab.class, "extvil:Lab");
 		
-		//Textures with Halloween Check
-        Calendar calendar = Calendar.getInstance();
-
-        if((calendar.get(2) + 1 == 10 && calendar.get(5) >= 28 && calendar.get(5) <= 31) || (calendar.get(2) + 1 == 11 && calendar.get(5) >= 1 && calendar.get(5) <= 2))
-        {  
-        	isHalloween = true;
-    	}
-        else
-        {
-        	isHalloween = false;
-        }
-        if(isHalloween)
-        {
-        	VillagerRegistry.instance().registerVillagerSkin(millvillager, this.HMILLER_TEXTURE);
-        	VillagerRegistry.instance().registerVillagerSkin(fishvillager, this.HFISHER_TEXTURE);
-        	VillagerRegistry.instance().registerVillagerSkin(backeryvillager, this.HBAKER_TEXTURE);
-        	VillagerRegistry.instance().registerVillagerSkin(minervillager, this.HMINER_TEXTURE);
-        	VillagerRegistry.instance().registerVillagerSkin(minervillager, this.HSCIENTIST_TEXTURE);
-        }
-        else
-        {
-    		VillagerRegistry.instance().registerVillagerSkin(millvillager, this.MILLER_TEXTURE);
-    		VillagerRegistry.instance().registerVillagerSkin(fishvillager, this.FISHER_TEXTURE);
-    		VillagerRegistry.instance().registerVillagerSkin(backeryvillager, this.BAKER_TEXTURE);
-    		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.MINER_TEXTURE);
-    		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.SCIENTIST_TEXTURE);
-        }
-        
-        
-		
 		proxy.registerRenderInformation();
 
 	}
