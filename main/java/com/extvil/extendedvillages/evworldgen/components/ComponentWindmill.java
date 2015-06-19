@@ -96,6 +96,15 @@ public class ComponentWindmill extends StructureVillagePieces.Village{
     		Floor = Blocks.nether_brick;
     		Path = Blocks.gravel;
     	}
+    	else if(ExtendedVillages.isChristmas)
+    	{
+    		walls = Blocks.snow;
+    		roof = Blocks.planks;
+    		Deco = Blocks.log;
+    		Ground = Blocks.snow;
+    		Floor = Blocks.brick_block;
+    		Path = Blocks.gravel;
+    	}
     	else
     	{
     		walls = Blocks.cobblestone;

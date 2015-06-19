@@ -34,7 +34,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 
 
 
-@Mod (modid = "extvil", name = "Extended_Villages", version = "1.7.10-2.3b", guiFactory = "com.extvil.extendedvillages.evcore.ExtendedVillagesGUIFactory")
+@Mod (modid = "extvil", name = "Extended_Villages", version = "1.7.10-2.4", guiFactory = "com.extvil.extendedvillages.evcore.ExtendedVillagesGUIFactory")
 
 
 public class ExtendedVillages 
@@ -47,7 +47,9 @@ public class ExtendedVillages
 	public static ExtendedVillages instance;
 
 	public static boolean isHalloween;
-    public static final ResourceLocation MILLER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Miller.png");
+	public static boolean isChristmas;
+
+	public static final ResourceLocation MILLER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Miller.png");
     public static final ResourceLocation FISHER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Fisher.png");
     public static final ResourceLocation BAKER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Baker.png");
     public static final ResourceLocation MINER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/Miner.png");
@@ -58,6 +60,12 @@ public class ExtendedVillages
     public static final ResourceLocation HBAKER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/HBaker.png");
     public static final ResourceLocation HMINER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/HMiner.png");
     public static final ResourceLocation HSCIENTIST_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/HScientist.png");
+    
+    public static final ResourceLocation CMILLER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/CMiller.png");
+    public static final ResourceLocation CFISHER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/CFisher.png");
+    public static final ResourceLocation CBAKER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/CBaker.png");
+    public static final ResourceLocation CMINER_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/CMiner.png");
+    public static final ResourceLocation CSCIENTIST_TEXTURE = new ResourceLocation("extvil:textures/entities/villager/CScientist.png");
 	
 	public static Block SmoothSand;
 	public static Block DecoSand;
@@ -121,11 +129,19 @@ public class ExtendedVillages
         if((calendar.get(2) + 1 == 10 && calendar.get(5) >= 28 && calendar.get(5) <= 31) || (calendar.get(2) + 1 == 11 && calendar.get(5) >= 1 && calendar.get(5) <= 2))
         {  
         	isHalloween = true;
+        	isChristmas = false;
+    	}
+        else if((calendar.get(2) + 1 == 12 && calendar.get(5) >= 23 && calendar.get(5) <= 27))
+        {  
+        	isChristmas = true;
+        	isHalloween = false;
     	}
         else
         {
         	isHalloween = false;
+        	isChristmas = false;
         }
+        
         if(isHalloween)
         {
         	VillagerRegistry.instance().registerVillagerSkin(millvillager, this.HMILLER_TEXTURE);
@@ -133,6 +149,14 @@ public class ExtendedVillages
         	VillagerRegistry.instance().registerVillagerSkin(backeryvillager, this.HBAKER_TEXTURE);
         	VillagerRegistry.instance().registerVillagerSkin(minervillager, this.HMINER_TEXTURE);
         	VillagerRegistry.instance().registerVillagerSkin(minervillager, this.HSCIENTIST_TEXTURE);
+        }
+        else if(isChristmas)
+        {
+    		VillagerRegistry.instance().registerVillagerSkin(millvillager, this.CMILLER_TEXTURE);
+    		VillagerRegistry.instance().registerVillagerSkin(fishvillager, this.CFISHER_TEXTURE);
+    		VillagerRegistry.instance().registerVillagerSkin(backeryvillager, this.CBAKER_TEXTURE);
+    		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.CMINER_TEXTURE);
+    		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.CSCIENTIST_TEXTURE);
         }
         else
         {
@@ -142,7 +166,6 @@ public class ExtendedVillages
     		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.MINER_TEXTURE);
     		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.SCIENTIST_TEXTURE);
         }
-        
         
 		
 		proxy.registerRenderInformation();

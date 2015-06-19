@@ -65,16 +65,7 @@ public class ComponentBakery extends StructureVillagePieces.Village{
         Block Floor;
         
     	BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(x, z);
-        Calendar calendar = Calendar.getInstance();
 
-        if((calendar.get(2) + 1 == 10 && calendar.get(5) >= 28 && calendar.get(5) <= 31) || (calendar.get(2) + 1 == 11 && calendar.get(5) >= 1 && calendar.get(5) <= 2))
-        {  
-        	isHalloween = true;
-    	}
-        else
-        {
-        	isHalloween = false;
-        }
     	if(biome == BiomeGenBase.desert)
     	{
     		walls = Blocks.sandstone;
@@ -84,13 +75,22 @@ public class ComponentBakery extends StructureVillagePieces.Village{
     		Path = Blocks.sandstone;
     		Floor = Blocks.planks;
     	}
-    	else if(isHalloween)
+    	else if(ExtendedVillages.isHalloween)
     	{
     		walls = Blocks.stained_hardened_clay;
     		roof = Blocks.netherrack;
     		Deco = Blocks.hardened_clay;
     		Ground = Blocks.soul_sand;
     		Floor = Blocks.nether_brick;
+    		Path = Blocks.gravel;
+    	}
+    	else if(ExtendedVillages.isChristmas)
+    	{
+    		walls = Blocks.snow;
+    		roof = Blocks.stained_hardened_clay;
+    		Deco = Blocks.log;
+    		Ground = Blocks.snow;
+    		Floor = Blocks.planks;
     		Path = Blocks.gravel;
     	}
     	else

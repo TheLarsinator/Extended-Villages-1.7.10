@@ -12,6 +12,8 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import com.extvil.extendedvillages.evcore.ExtendedVillages;
+
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -19,7 +21,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderExtendedVillager extends RenderLiving
 {
-	private boolean isHalloween;
     private static final ResourceLocation villagerTextures = new ResourceLocation("extvil:"+"textures/entities/villager/villager.png");
     private static final ResourceLocation farmerVillagerTextures = new ResourceLocation("extvil:"+"textures/entities/villager/farmer.png");
     private static final ResourceLocation librarianVillagerTextures = new ResourceLocation("extvil:"+"textures/entities/villager/librarian.png");
@@ -34,7 +35,13 @@ public class RenderExtendedVillager extends RenderLiving
     private static final ResourceLocation HsmithVillagerTextures = new ResourceLocation("extvil:"+"textures/entities/villager/Hsmith.png");
     private static final ResourceLocation HbutcherVillagerTextures = new ResourceLocation("extvil:"+"textures/entities/villager/Hbutcher.png");
     
-
+    private static final ResourceLocation CvillagerTextures = new ResourceLocation("extvil:"+"textures/entities/villager/Cvillager.png");
+    private static final ResourceLocation CfarmerVillagerTextures = new ResourceLocation("extvil:"+"textures/entities/villager/Cfarmer.png");
+    private static final ResourceLocation ClibrarianVillagerTextures = new ResourceLocation("extvil:"+"textures/entities/villager/Clibrarian.png");
+    private static final ResourceLocation CpriestVillagerTextures = new ResourceLocation("extvil:"+"textures/entities/villager/Cpriest.png");
+    private static final ResourceLocation CsmithVillagerTextures = new ResourceLocation("extvil:"+"textures/entities/villager/Csmith.png");
+    private static final ResourceLocation CbutcherVillagerTextures = new ResourceLocation("extvil:"+"textures/entities/villager/Cbutcher.png");
+    
     /** Model of the villager. */
     protected ModelExtendedVillager villagerModel;
     private static final String __OBFID = "CL_00001032";
@@ -43,17 +50,7 @@ public class RenderExtendedVillager extends RenderLiving
     {
         super(new ModelExtendedVillager(0.0F), 0.5F);
         this.villagerModel = (ModelExtendedVillager)this.mainModel;
-        
-        Calendar calendar = Calendar.getInstance();
 
-        if((calendar.get(2) + 1 == 10 && calendar.get(5) >= 28 && calendar.get(5) <= 31) || (calendar.get(2) + 1 == 11 && calendar.get(5) >= 1 && calendar.get(5) <= 2))
-        {  
-        	isHalloween = true;
-    	}
-        else
-        {
-        	isHalloween = false;
-        }
     }
 
     /**
@@ -80,7 +77,7 @@ public class RenderExtendedVillager extends RenderLiving
      */
     protected ResourceLocation getEntityTexture(EntityVillager p_110775_1_)
     {
-        if(isHalloween)
+        if(ExtendedVillages.isHalloween)
         {
         switch (p_110775_1_.getProfession())
         {
@@ -97,6 +94,24 @@ public class RenderExtendedVillager extends RenderLiving
             default:
                 return VillagerRegistry.getVillagerSkin(p_110775_1_.getProfession(), HvillagerTextures);
         }
+        }
+        else if(ExtendedVillages.isChristmas)
+        {
+            switch (p_110775_1_.getProfession())
+            {
+                case 0:
+                    return CfarmerVillagerTextures;
+                case 1:
+                    return ClibrarianVillagerTextures;
+                case 2:
+                    return CpriestVillagerTextures;
+                case 3:
+                    return CsmithVillagerTextures;
+                case 4:
+                    return CbutcherVillagerTextures;
+                default:
+                    return VillagerRegistry.getVillagerSkin(p_110775_1_.getProfession(), CvillagerTextures);
+            }
         }
         else
         {

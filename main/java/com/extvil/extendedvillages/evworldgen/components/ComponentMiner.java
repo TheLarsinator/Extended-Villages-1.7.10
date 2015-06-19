@@ -93,6 +93,15 @@ public class ComponentMiner extends StructureVillagePieces.Village{
     		Floor = Blocks.nether_brick;
     		Path = Blocks.gravel;
     	}
+    	else if(ExtendedVillages.isChristmas)
+    	{
+    		walls = Blocks.snow;
+    		roof = Blocks.snow;
+    		Deco = Blocks.cobblestone_wall;
+    		Ground = Blocks.snow;
+    		Floor = Blocks.planks;
+    		Path = Blocks.gravel;
+    	}
     	else
     	{
     		walls = Blocks.cobblestone;

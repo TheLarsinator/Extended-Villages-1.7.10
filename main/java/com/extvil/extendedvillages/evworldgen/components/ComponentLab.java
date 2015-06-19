@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import com.extvil.extendedvillages.evcore.ExtendedVillages;
 import com.extvil.extendedvillages.evcore.handler.ConfigHandler;
 
 import net.minecraft.block.Block;
@@ -105,6 +106,15 @@ public class ComponentLab extends StructureVillagePieces.Village{
     		Deco = Blocks.tnt;
     		Ground = Blocks.soul_sand;
     		Floor = Blocks.nether_brick;
+    		Path = Blocks.gravel;
+    	}
+    	else if(ExtendedVillages.isChristmas)
+    	{
+    		walls = Blocks.snow;
+    		roof = Blocks.stone_slab;
+    		Deco = Blocks.leaves;
+    		Ground = Blocks.snow;
+    		Floor = Blocks.planks;
     		Path = Blocks.gravel;
     	}
     	else

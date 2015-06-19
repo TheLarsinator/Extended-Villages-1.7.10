@@ -17,6 +17,7 @@ public class ConfigHandler
 	public static int ScientistID = 18;
 	public static int TannerID = 25;
 	public static int PalID = 26;
+	public static int StickID = 27;
 
 	
 	public static boolean CustomRender = true;
@@ -40,6 +41,8 @@ public class ConfigHandler
 		ScientistID = config.getInt("Scientist Villager ID", "villagers", ScientistID, 0, 300, "Villager ID for Scientist");
 		TannerID = config.getInt("Tanner Villager ID", "villagers", TannerID, 0, 300, "Villager ID for Tanner");
 		PalID = config.getInt("Pal Villager ID", "villagers", PalID, 0, 300, "Villager ID for Pal");
+		StickID = config.getInt("Stick Maker Villager ID", "villagers", StickID, 0, 300, "Villager ID for Stick Maker");
+
 		CustomRender = config.getBoolean("Custom Render", "customrender", CustomRender, "Enable/Disable custom Render. Turn this off if you want to use a texture-pack");
 		
 		if(config.hasChanged())	

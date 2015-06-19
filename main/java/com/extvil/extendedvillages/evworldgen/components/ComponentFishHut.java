@@ -95,6 +95,14 @@ public class ComponentFishHut extends StructureVillagePieces.Village{
     		Floor = Blocks.nether_brick;
     		Path = Blocks.gravel;
     	}
+    	else if(ExtendedVillages.isChristmas)
+    	{
+    		walls = Blocks.snow;
+    		roof = Blocks.stained_hardened_clay;
+    		Deco = Blocks.log;
+    		Ground = Blocks.snow;
+    		Floor = Blocks.planks;
+    	}
     	else
     	{
     		walls = Blocks.cobblestone;
@@ -102,7 +110,6 @@ public class ComponentFishHut extends StructureVillagePieces.Village{
     		Deco = Blocks.log;
     		Ground = Blocks.grass;
     		Floor = Blocks.planks;
-
     	}
     	
         //Water
