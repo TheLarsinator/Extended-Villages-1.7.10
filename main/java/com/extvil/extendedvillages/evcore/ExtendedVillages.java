@@ -123,51 +123,6 @@ public class ExtendedVillages
 		
 		MapGenStructureIO.func_143031_a(ComponentLab.class, "extvil:Lab");
 		
-		//Textures with Halloween Check
-        Calendar calendar = Calendar.getInstance();
-
-        if((calendar.get(2) + 1 == 10 && calendar.get(5) >= 28 && calendar.get(5) <= 31) || (calendar.get(2) + 1 == 11 && calendar.get(5) >= 1 && calendar.get(5) <= 2))
-        {  
-        	isHalloween = true;
-        	isChristmas = false;
-    	}
-        else if((calendar.get(2) + 1 == 12 && calendar.get(5) >= 23 && calendar.get(5) <= 27))
-        {  
-        	isChristmas = true;
-        	isHalloween = false;
-    	}
-        else
-        {
-        	isHalloween = false;
-        	isChristmas = false;
-        }
-        
-        if(isHalloween)
-        {
-        	VillagerRegistry.instance().registerVillagerSkin(millvillager, this.HMILLER_TEXTURE);
-        	VillagerRegistry.instance().registerVillagerSkin(fishvillager, this.HFISHER_TEXTURE);
-        	VillagerRegistry.instance().registerVillagerSkin(backeryvillager, this.HBAKER_TEXTURE);
-        	VillagerRegistry.instance().registerVillagerSkin(minervillager, this.HMINER_TEXTURE);
-        	VillagerRegistry.instance().registerVillagerSkin(minervillager, this.HSCIENTIST_TEXTURE);
-        }
-        else if(isChristmas)
-        {
-    		VillagerRegistry.instance().registerVillagerSkin(millvillager, this.CMILLER_TEXTURE);
-    		VillagerRegistry.instance().registerVillagerSkin(fishvillager, this.CFISHER_TEXTURE);
-    		VillagerRegistry.instance().registerVillagerSkin(backeryvillager, this.CBAKER_TEXTURE);
-    		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.CMINER_TEXTURE);
-    		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.CSCIENTIST_TEXTURE);
-        }
-        else
-        {
-    		VillagerRegistry.instance().registerVillagerSkin(millvillager, this.MILLER_TEXTURE);
-    		VillagerRegistry.instance().registerVillagerSkin(fishvillager, this.FISHER_TEXTURE);
-    		VillagerRegistry.instance().registerVillagerSkin(backeryvillager, this.BAKER_TEXTURE);
-    		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.MINER_TEXTURE);
-    		VillagerRegistry.instance().registerVillagerSkin(minervillager, this.SCIENTIST_TEXTURE);
-        }
-        
-		
 		proxy.registerRenderInformation();
 
 	}
