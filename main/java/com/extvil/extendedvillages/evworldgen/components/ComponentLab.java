@@ -92,7 +92,7 @@ public class ComponentLab extends StructureVillagePieces.Village{
         }
     	if(biome == BiomeGenBase.desert)
     	{
-    		walls = Blocks.gold_block;
+    		walls = Blocks.sandstone;
     		roof = Blocks.stone_slab;
     		Deco = Blocks.bookshelf;
     		Ground = Blocks.sand;
@@ -119,7 +119,7 @@ public class ComponentLab extends StructureVillagePieces.Village{
     	}
     	else
     	{
-    		walls = Blocks.iron_block;
+    		walls = Blocks.brick_block;
     		roof = Blocks.stone_slab;
     		Deco = Blocks.bookshelf;
     		Ground = Blocks.grass;

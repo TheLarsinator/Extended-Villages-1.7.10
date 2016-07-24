@@ -19,6 +19,12 @@ public class ConfigHandler
 	public static int PalID = 26;
 	public static int StickID = 27;
 
+	public static boolean enableMill = true;
+	public static boolean enableFishHut = true;
+	public static boolean enableBakery = true;
+	public static boolean enableLab = true;
+	public static boolean enableMine = true;
+	
 	
 	public static boolean CustomRender = true;
 	
@@ -43,6 +49,13 @@ public class ConfigHandler
 		PalID = config.getInt("Pal Villager ID", "villagers", PalID, 0, 300, "Villager ID for Pal");
 		StickID = config.getInt("Stick Maker Villager ID", "villagers", StickID, 0, 300, "Villager ID for Stick Maker");
 
+		enableMill = config.getBoolean("Enable Windmill", "buildings", enableMill, "Enable/Disable windmill");
+		enableFishHut = config.getBoolean("Enable FishHut", "buildings", enableFishHut, "Enable/Disable fish hut");
+		enableBakery = config.getBoolean("Enable Bakery", "buildings", enableBakery, "Enable/Disable bakery");
+		enableLab = config.getBoolean("Enable Lab", "buildings", enableLab, "Enable/Disable lab");
+		enableMine = config.getBoolean("Enable Mine", "buildings", enableMine, "Enable/Disable mine");
+
+		
 		CustomRender = config.getBoolean("Custom Render", "customrender", CustomRender, "Enable/Disable custom Render. Turn this off if you want to use a texture-pack");
 		
 		if(config.hasChanged())	
